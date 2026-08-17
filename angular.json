@@ -55,6 +55,7 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          
           "configurations": {
             "production": {
               "buildTarget": "prueba1:build:production"

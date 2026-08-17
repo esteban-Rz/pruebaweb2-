@@ -1,0 +1,144 @@
+<div class="form-container">
+  <h1>Agendar Cita</h1>
+  <p class="subtitle">Completa el formulario y agenda tu cita en el taller</p>
+
+  <form [formGroup]="citaForm" (ngSubmit)="onSubmit()">
+
+    <!-- Datos del cliente -->
+    <fieldset>
+      <legend>Datos del cliente</legend>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input id="nombre" type="text" formControlName="nombre" placeholder="Juan">
+          @if (f['nombre'].touched && f['nombre'].invalid) {
+            <span class="error">El nombre es obligatorio (mínimo 3 caracteres)</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="apellido">Apellido</label>
+          <input id="apellido" type="text" formControlName="apellido" placeholder="Pérez">
+          @if (f['apellido'].touched && f['apellido'].invalid) {
+            <span class="error">El apellido es obligatorio (mínimo 3 caracteres)</span>
+          }
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="telefono">Teléfono</label>
+          <input id="telefono" type="tel" formControlName="telefono" placeholder="0991234567">
+          @if (f['telefono'].touched && f['telefono'].invalid) {
+            <span class="error">Ingresa un teléfono válido (7-10 dígitos)</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="email">Correo electrónico</label>
+          <input id="email" type="email" formControlName="email" placeholder="correo@ejemplo.com">
+          @if (f['email'].touched && f['email'].invalid) {
+            <span class="error">Ingresa un correo válido</span>
+          }
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- Datos del vehículo -->
+    <fieldset>
+      <legend>Datos del vehículo</legend>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="marca">Marca</label>
+          <input id="marca" type="text" formControlName="marca" placeholder="Toyota">
+          @if (f['marca'].touched && f['marca'].invalid) {
+            <span class="error">La marca es obligatoria</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="modelo">Modelo</label>
+          <input id="modelo" type="text" formControlName="modelo" placeholder="Corolla">
+          @if (f['modelo'].touched && f['modelo'].invalid) {
+            <span class="error">El modelo es obligatorio</span>
+          }
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="anio">Año</label>
+          <input id="anio" type="number" formControlName="anio" placeholder="2020">
+          @if (f['anio'].touched && f['anio'].invalid) {
+            <span class="error">Ingresa un año válido</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="placa">Placa</label>
+          <input id="placa" type="text" formControlName="placa" placeholder="PBA-1234">
+          @if (f['placa'].touched && f['placa'].invalid) {
+            <span class="error">La placa es obligatoria</span>
+          }
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- Servicio asociado -->
+    <fieldset>
+      <legend>Servicio solicitado</legend>
+
+      <div class="form-group">
+        <label for="servicio">Selecciona el tipo de servicio</label>
+        <select id="servicio" formControlName="servicio">
+          <option value="" disabled selected>-- Elige un servicio --</option>
+          @for (s of servicios; track s.valor) {
+            <option [value]="s.valor">{{ s.etiqueta }}</option>
+          }
+        </select>
+        @if (f['servicio'].touched && f['servicio'].invalid) {
+          <span class="error">Debes seleccionar un servicio</span>
+        }
+      </div>
+    </fieldset>
+
+    <!-- Fecha y hora -->
+    <fieldset>
+      <legend>Fecha y hora de la cita</legend>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fecha">Fecha</label>
+          <input id="fecha" type="date" formControlName="fecha" [min]="hoy">
+          @if (f['fecha'].touched && f['fecha'].invalid) {
+            <span class="error">Selecciona una fecha</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="hora">Hora</label>
+          <input id="hora" type="time" formControlName="hora">
+          @if (f['hora'].touched && f['hora'].invalid) {
+            <span class="error">Selecciona una hora</span>
+          }
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- Observaciones -->
+    <fieldset>
+      <legend>Observaciones (opcional)</legend>
+      <div class="form-group">
+        <textarea formControlName="descripcion" rows="4"
+                  placeholder="Describe brevemente el problema o lo que necesitas..."></textarea>
+        @if (f['descripcion'].invalid) {
+          <span class="error">Máximo 300 caracteres</span>
+        }
+      </div>
+    </fieldset>
+
+    <button type="submit" class="btn-submit">Agendar cita</button>
+  </form>
+</div>

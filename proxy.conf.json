@@ -1,0 +1,11 @@
+{
+  "/api-parcan": {
+    "target": "https://www.parcan.es",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api-parcan": "/api"
+    },
+    "logLevel": "debug"
+  }
+}

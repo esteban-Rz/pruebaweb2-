@@ -9,7 +9,7 @@ export class Leerapi {
     private http = inject(HttpClient);
 
   // la api que usamos
-  private Api_Vehiculo = "https://www.parcan.es/api/transparencia/vehiculos/?format=json"; // endpoint 
+  private Api_Vehiculo = "/api-parcan/transparencia/vehiculos/?format=json"; // endpoint 
 
   // get Api
   getVehiculos(): Observable<any> {
