@@ -1,0 +1,28 @@
+<div class="galeria-container">
+  <h1>Vehículos del Parlamento de Canarias</h1>
+
+  @if (vehiculos().length > 0) {
+    <table class="tabla-vehiculos">
+      <thead>
+        <tr>
+          <th>Tipo</th>
+          <th>Marca</th>
+          <th>Modelo</th>
+          <th>Fecha del acuerdo</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (v of vehiculos(); track $index) {
+          <tr>
+            <td>{{ v.tipo }}</td>
+            <td>{{ v.marca }}</td>
+            <td>{{ v.modelo }}</td>
+            <td>{{ v.fecha_acuerdo || v.fecha }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  } @else {
+    <p>Cargando vehículos...</p>
+  }
+</div>
